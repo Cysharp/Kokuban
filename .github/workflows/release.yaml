@@ -20,10 +20,10 @@ jobs:
     - name: "Set VersionSuffix for Preview"
       if: "contains(github.ref, 'refs/tags') && contains(github.ref, 'preview')"
       run: |
-        echo "::set-env name=VERSION_SUFFIX::preview.`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}"
+        echo "preview.`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}" >> $VERSION_SUFFIX
     - name: "Get git tag"
       if: "contains(github.ref, 'refs/tags')"
-      run: echo ::set-env name=GIT_TAG::${GITHUB_REF#refs/tags/}
+      run: echo ${GITHUB_REF#refs/tags/} >> $GIT_TAG
 
     # Build
     - run: dotnet restore
