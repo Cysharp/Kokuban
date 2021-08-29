@@ -3,9 +3,10 @@
   <PropertyGroup>
     <VersionPrefix>0.1.0</VersionPrefix>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
 
     <!-- NuGet Package Information -->
-    <Description></Description>
+    <Description>Kokuban makes it easy to style strings on the terminal for .NET applications.</Description>
     <Authors>Mayuki Sawatari</Authors>
     <Copyright>Copyright 2021-present Mayuki Sawatari</Copyright>
     <PackageProjectUrl>https://github.com/mayuki/Kokuban</PackageProjectUrl>
