@@ -64,10 +64,16 @@ Console.WriteLine(
 
 
 ## API
-### `Chalk.<style>{.<style>...}[string]`
+### `Chalk.<style>{.<style>...}[string]` (indexer)
 
 ```csharp
 Chalk.Red.Underline["Hello"] // => "Hello" (Red + Underlined)
+```
+
+### `Chalk.<style>{.<style>...} + string` (`+` operator)
+
+```csharp
+(Chalk.Red.Underline + "Hello") // => "Hello" (Red + Underlined)
 ```
 
 ### `Kokuban.Chalk` class
