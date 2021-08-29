@@ -10,12 +10,12 @@ using Xunit;
 
 namespace Kokuban.Tests
 {
-    public class AnsiStyleBuilderTest
+    public class AnsiStyleTest
     {
         [Fact]
         public void Render_Indexer()
         {
-            var builder = new AnsiStyleBuilder().Bold;
+            var builder = new AnsiStyle().Bold;
 
             var styled = builder["foo"];
             styled.Style.Should().NotBeNull();
@@ -26,7 +26,7 @@ namespace Kokuban.Tests
         [Fact]
         public void Render()
         {
-            var builder = new AnsiStyleBuilder().Bold;
+            var builder = new AnsiStyle().Bold;
 
             var styled = builder.Render("foo");
             styled.Style.Should().NotBeNull();
@@ -38,7 +38,7 @@ namespace Kokuban.Tests
         public void Flags()
         {
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeFalse();
                 builder.Italic.Should().BeFalse();
@@ -49,7 +49,7 @@ namespace Kokuban.Tests
                 builder.Foreground.Should().BeNull();
             }
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold.Dim);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold.Dim);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeTrue();
                 builder.Italic.Should().BeFalse();
@@ -60,7 +60,7 @@ namespace Kokuban.Tests
                 builder.Foreground.Should().BeNull();
             }
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold.Dim.Italic);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold.Dim.Italic);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeTrue();
                 builder.Italic.Should().BeTrue();
@@ -71,7 +71,7 @@ namespace Kokuban.Tests
                 builder.Foreground.Should().BeNull();
             }
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold.Dim.Italic.Underline);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold.Dim.Italic.Underline);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeTrue();
                 builder.Italic.Should().BeTrue();
@@ -82,7 +82,7 @@ namespace Kokuban.Tests
                 builder.Foreground.Should().BeNull();
             }
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold.Dim.Italic.Underline.Overline);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold.Dim.Italic.Underline.Overline);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeTrue();
                 builder.Italic.Should().BeTrue();
@@ -93,7 +93,7 @@ namespace Kokuban.Tests
                 builder.Foreground.Should().BeNull();
             }
             {
-                var builder = ((IAnsiStyleBuilder)new AnsiStyleBuilder().Bold.Dim.Italic.Underline.Overline.Inverse);
+                var builder = ((IAnsiStyle)new AnsiStyle().Bold.Dim.Italic.Underline.Overline.Inverse);
                 builder.Bold.Should().BeTrue();
                 builder.Dim.Should().BeTrue();
                 builder.Italic.Should().BeTrue();

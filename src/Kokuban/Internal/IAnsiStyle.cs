@@ -1,6 +1,6 @@
-﻿namespace Kokuban.Internal
+namespace Kokuban.Internal
 {
-    internal interface IAnsiStyleBuilder
+    internal interface IAnsiStyle
     {
         KokubanOptions? Options { get; }
         KokubanColorValue? Foreground { get; }

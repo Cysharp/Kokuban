@@ -47,7 +47,7 @@ namespace Kokuban.Internal
             {
                 case string str: sb.Append(str); break;
                 case AnsiStyledString styled: RenderCore(sb, styled, renderState); break;
-                case AnsiStyleBuilder: break;
+                case AnsiStyle: break;
                 case null: break; // Ignore
                 default: throw new NotSupportedException();
             }
@@ -59,7 +59,7 @@ namespace Kokuban.Internal
         }
 
         private bool TryRenderPrefix<T>(StringBuilder sb, T style, ref RenderState renderState)
-            where T : struct, IAnsiStyleBuilder
+            where T : struct, IAnsiStyle
         {
             var options = renderState.Options = style.Options ?? KokubanOptions.Default;
             if (options.Mode == KokubanColorMode.None)

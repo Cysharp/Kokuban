@@ -10,17 +10,17 @@ namespace Kokuban.AnsiEscape
     /// </summary>
     public sealed class AnsiStyledString
     {
-        internal AnsiStyleBuilder? Style { get; set; }
+        internal AnsiStyle? Style { get; set; }
         internal object? First { get; set; }
         internal object? Second { get; set; }
 
-        public AnsiStyledString(AnsiStyleBuilder? style, object first)
+        public AnsiStyledString(AnsiStyle? style, object first)
         {
             Style = style;
             First = first;
         }
 
-        public AnsiStyledString(AnsiStyleBuilder? style, object first, object second)
+        public AnsiStyledString(AnsiStyle? style, object first, object second)
         {
             Style = style;
             First = first;
@@ -33,7 +33,7 @@ namespace Kokuban.AnsiEscape
         }
         public static AnsiStyledString operator +(AnsiStyledString styled, string s)
         {
-            if (styled.Second is AnsiStyleBuilder secondStyle)
+            if (styled.Second is AnsiStyle secondStyle)
             {
                 return new AnsiStyledString(null, styled.First!, new AnsiStyledString(secondStyle, s));
             }

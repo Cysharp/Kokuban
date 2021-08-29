@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Kokuban.Internal
+namespace Kokuban.AnsiEscape
 {
     // This class based on chalk/supports-color
     // The original source code is licensed under the MIT License.

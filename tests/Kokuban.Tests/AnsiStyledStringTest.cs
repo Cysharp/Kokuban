@@ -21,7 +21,7 @@ namespace Kokuban.Tests
             var styled = "Foo" + Chalk.Bold;
             styled.Style.Should().BeNull();
             styled.First.Should().BeOfType<string>().And.Be("Foo");
-            styled.Second.Should().BeOfType<AnsiStyleBuilder>();
+            styled.Second.Should().BeOfType<AnsiStyle>();
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace Kokuban.Tests
             var styled = Chalk.Bold + "Foo" + Chalk.Italic;
             styled.Style.Should().BeNull();
             styled.First.Should().BeOfType<AnsiStyledString>();
-            styled.Second.Should().BeOfType<AnsiStyleBuilder>();
+            styled.Second.Should().BeOfType<AnsiStyle>();
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace Kokuban.Tests
             var styled = new AnsiStyledString(null, "Foo") + Chalk.Bold;
             styled.Style.Should().BeNull();
             styled.First.Should().BeOfType<AnsiStyledString>().Subject.First.Should().Be("Foo");
-            styled.Second.Should().BeOfType<AnsiStyleBuilder>();
+            styled.Second.Should().BeOfType<AnsiStyle>();
         }
 
         [Fact]

@@ -47,13 +47,13 @@ namespace Kokuban
     public partial class Chalk
     {
 <# foreach (var color in colors) { #>
-        public static AnsiStyleBuilder <#= color.Key #> => new AnsiStyleBuilder().<#= color.Key #>;
+        public static AnsiStyle <#= color.Key #> => new AnsiStyle().<#= color.Key #>;
 <# } #>
 <# foreach (var color in colors) { #>
-        public static AnsiStyleBuilder Bg<#= color.Key #> => new AnsiStyleBuilder().Bg<#= color.Key #>;
+        public static AnsiStyle Bg<#= color.Key #> => new AnsiStyle().Bg<#= color.Key #>;
 <# } #>
 <# foreach (var style in styles) { #>
-        public static AnsiStyleBuilder <#= style.Key #> => new AnsiStyleBuilder().<#= style.Key #>;
+        public static AnsiStyle <#= style.Key #> => new AnsiStyle().<#= style.Key #>;
 <# } #>
     }
     
@@ -80,13 +80,13 @@ namespace Kokuban.AnsiEscape
 <# } #>
     }
 
-    public partial struct AnsiStyleBuilder
+    public partial struct AnsiStyle
     {
 <# foreach (var color in colors) { #>
-        public AnsiStyleBuilder <#= color.Key #> => Foreground(KokubanColor.<#= color.Key #>);
+        public AnsiStyle <#= color.Key #> => Foreground(KokubanColor.<#= color.Key #>);
 <# } #>
 <# foreach (var color in colors) { #>
-        public AnsiStyleBuilder Bg<#= color.Key #> => Background(KokubanColor.<#= color.Key #>);
+        public AnsiStyle Bg<#= color.Key #> => Background(KokubanColor.<#= color.Key #>);
 <# } #>
     }
 

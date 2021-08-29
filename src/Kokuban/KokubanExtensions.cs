@@ -11,7 +11,7 @@ namespace Kokuban
         /// <param name="value"></param>
         /// <param name="styles"></param>
         /// <returns></returns>
-        public static AnsiStyledString ToStyledString(this string value, AnsiStyleBuilder styles)
+        public static AnsiStyledString ToStyledString(this string value, AnsiStyle styles)
         {
             return (styles + value);
         }

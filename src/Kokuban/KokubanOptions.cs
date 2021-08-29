@@ -1,4 +1,5 @@
 using System;
+using Kokuban.AnsiEscape;
 using Kokuban.Internal;
 
 namespace Kokuban
