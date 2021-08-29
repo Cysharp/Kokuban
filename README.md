@@ -14,6 +14,8 @@ Kokuban is based on JavaScript library [Chalk](https://github.com/chalk/chalk) f
 ## Requirements
 
 - .NET Standard 2.0 or higher
+- Linux, macOS, Windows ...
+    - Windows 10 Anniversary Update or later
 
 ## Install
 ```
@@ -74,6 +76,12 @@ Chalk.Red.Underline["Hello"] // => "Hello" (Red + Underlined)
 
 ```csharp
 (Chalk.Red.Underline + "Hello") // => "Hello" (Red + Underlined)
+```
+
+### `ToStyledString` extension method
+
+```csharp
+Console.WriteLine("Foo Bar Baz".ToStyledString(Chalk.White.Blue));
 ```
 
 ### `Kokuban.Chalk` class
