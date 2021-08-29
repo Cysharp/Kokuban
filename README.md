@@ -1,9 +1,9 @@
 # 🖍 Kokuban
-Kokuban makes it easy to style strings on the terminal for .NET applications. (Kokuban is "blackboard" in Japanese.)
+Kokuban simplifies styling strings in the terminal for .NET applications. (Kokuban is "blackboard" in Japanese.)
 
 ![](docs/assets/Screen-01.png)
 
-It is based on JavaScript library [Chalk](https://github.com/chalk/chalk) for many of its concepts and some of its code. 
+Kokuban is based on JavaScript library [Chalk](https://github.com/chalk/chalk) for many of its concepts and some of its code.
 
 ## Features
 - Expressive API
@@ -11,8 +11,11 @@ It is based on JavaScript library [Chalk](https://github.com/chalk/chalk) for ma
 - Auto enables escape sequence support on Windows 10 20H1 or later
 - 256 (8-bit) / TrueColor (24-bit) colors support
 
-## Install
+## Requirements
 
+- .NET Standard 2.0 or higher
+
+## Install
 ```
 dotnet package add Kokuban
 ```
@@ -132,6 +135,14 @@ Console.WriteLine(chalk.Red.Underline["Hello"]); // => "Hello" without escape se
     - `Background` (for 3 or 4-bit)
     - `BgAnsi256` (for 8-bit)
     - `BgRgb` (for 24-bit)
+
+## 256 colors (8-bit) and TrueColor (24-bit) support
+Kokuban also supports 256 colors (8-bit) and TrueColors (24-bit) on supported terminals, same as [Chalk](https://github.com/chalk/chalk#256-and-truecolor-color-support).
+
+The automatic detection of support states and color downsampling are derived from Chalk.
+
+Kokuban supports ANSI 256-palette index (`Ansi256` method) and RGB format (`Rgb` method). However, Hex format (e.g. `#AABBCC`) is not yet supported.
+
 ## License
 
 ```

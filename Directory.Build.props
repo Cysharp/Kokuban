@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <!-- NuGet Package Information -->
-    <Description>Kokuban makes it easy to style strings on the terminal for .NET applications.</Description>
+    <Description>Simplifies styling strings in the terminal</Description>
     <Authors>Mayuki Sawatari</Authors>
     <Copyright>Copyright 2021-present Mayuki Sawatari</Copyright>
     <PackageProjectUrl>https://github.com/mayuki/Kokuban</PackageProjectUrl>
