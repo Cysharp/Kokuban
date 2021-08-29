@@ -28,7 +28,7 @@ jobs:
     - run: dotnet test -c Release --no-build --logger trx --results-directory $GITHUB_WORKSPACE/artifacts
 
     # Packaging
-    - name: dotnet pack Cocona
+    - name: dotnet pack
       run: dotnet pack -c Release --no-build --version-suffix "$(versionSuffix)" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output $GITHUB_WORKSPACE/artifacts ./src/Kokuban/Kokuban.csproj
 
     # Upload & Publish
