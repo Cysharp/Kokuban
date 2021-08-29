@@ -42,13 +42,13 @@ namespace Kokuban.AnsiEscape
         }
 
         public static implicit operator string(AnsiStyledString s)
-        {
-            return s.ToString();
-        }
+            => s.ToString();
+
+        // for LINQPad
+        private object ToDump()
+            => ToString();
 
         public override string ToString()
-        {
-            return AnsiStyledStringRenderer.Default.Render(this);
-        }
+            => AnsiStyledStringRenderer.Default.Render(this);
     }
 }
