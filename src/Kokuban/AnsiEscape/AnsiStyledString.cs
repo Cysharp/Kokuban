@@ -5,7 +5,10 @@ using Kokuban.Internal;
 
 namespace Kokuban.AnsiEscape
 {
-    public class AnsiStyledString
+    /// <summary>
+    /// Represents a string styled with ANSI escape sequences.
+    /// </summary>
+    public sealed class AnsiStyledString
     {
         internal AnsiStyleBuilder? Style { get; set; }
         internal object? First { get; set; }

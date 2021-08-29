@@ -5,7 +5,13 @@ namespace Kokuban
 {
     public static class KokubanExtensions
     {
-        public static string ToStyledString(this string value, AnsiStyleBuilder styles)
+        /// <summary>
+        /// Create a styled string from the string and the specified styles.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="styles"></param>
+        /// <returns></returns>
+        public static AnsiStyledString ToStyledString(this string value, AnsiStyleBuilder styles)
         {
             return (styles + value);
         }

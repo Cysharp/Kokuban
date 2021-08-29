@@ -1,4 +1,4 @@
-﻿using Kokuban.AnsiEscape;
+using Kokuban.AnsiEscape;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +7,11 @@ namespace Kokuban
 {
     public partial class Chalk
     {
+        /// <summary>
+        /// Creates a new instance of Chalk with options.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public static AnsiStyleBuilder Create(KokubanOptions options)
             => new AnsiStyleBuilder().WithKokubanOptions(options);
 
