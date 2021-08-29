@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 namespace Kokuban.Internal
@@ -11,7 +11,7 @@ namespace Kokuban.Internal
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    internal readonly struct KokubanColorValue
+    internal readonly struct KokubanColorValue : IEquatable<KokubanColorValue>
     {
         [FieldOffset(0)] public readonly KokubanColorValueType Type;
 
@@ -39,7 +39,7 @@ namespace Kokuban.Internal
 
         public static KokubanColorValue FromBasic(byte index)
             => new KokubanColorValue(KokubanColorValueType.Code, index);
-        public static KokubanColorValue FromIndexed(byte index)
+        public static KokubanColorValue FromIndex(byte index)
             => new KokubanColorValue(KokubanColorValueType.Indexed, index);
         public static KokubanColorValue FromRgb(byte r, byte g, byte b)
             => new KokubanColorValue(KokubanColorValueType.Rgb, r, g, b);
@@ -135,6 +135,34 @@ namespace Kokuban.Internal
             }
 
             return (byte)result;
+        }
+
+        public static bool operator ==(KokubanColorValue l, KokubanColorValue r)
+            => l.Equals(r);
+        public static bool operator !=(KokubanColorValue l, KokubanColorValue r)
+            => !l.Equals(r);
+
+        public bool Equals(KokubanColorValue other)
+        {
+            return Type == other.Type && Index == other.Index && R == other.R && G == other.G && B == other.B;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is KokubanColorValue other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) Type;
+                hashCode = (hashCode * 397) ^ Index.GetHashCode();
+                hashCode = (hashCode * 397) ^ R.GetHashCode();
+                hashCode = (hashCode * 397) ^ G.GetHashCode();
+                hashCode = (hashCode * 397) ^ B.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

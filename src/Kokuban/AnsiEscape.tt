@@ -67,16 +67,16 @@ namespace Kokuban
 
 namespace Kokuban.AnsiEscape
 {
-    public static partial class StringAnsiEscape
+    public static partial class AnsiEscapeCode
     {
 <# foreach (var color in colors) { #>
-        public static string <#= color.Key #>(string s) => ForegroundColor(s, KokubanColor.<#= color.Key #>);
+        public static (int Begin, int End) <#= color.Key #> { get; } = (<#= color.Value #>, 39);
 <# } #>
 <# foreach (var color in colors) { #>
-        public static string Bg<#= color.Key #>(string s) => BackgroundColor(s, KokubanColor.<#= color.Key #>);
+        public static (int Begin, int End) Bg<#= color.Key #> { get; } = (<#= color.Value + 10 #>, 49);
 <# } #>
 <# foreach (var style in styles) { #>
-        public static string <#= style.Key #>(string s) => Decorate(s, <#= style.Value.Begin #>, <#= style.Value.End #>);
+        public static (int Begin, int End) <#= style.Key #> { get; } = (<#= style.Value.Begin #>, <#= style.Value.End #>);
 <# } #>
     }
 

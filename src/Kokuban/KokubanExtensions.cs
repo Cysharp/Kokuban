@@ -1,4 +1,4 @@
-﻿using Kokuban.AnsiEscape;
+using Kokuban.AnsiEscape;
 using Kokuban.Internal;
 
 namespace Kokuban
@@ -7,7 +7,7 @@ namespace Kokuban
     {
         public static string ToStyledString(this string value, AnsiStyleBuilder styles)
         {
-            return AnsiStyledStringRenderer.Default.Render(styles, value);
+            return (styles + value);
         }
     }
 }

@@ -1,5 +1,38 @@
-# Kokuban
+# 🖍 Kokuban
+Kokuban makes it easy to style strings on the terminal for .NET applications. 
 
+It is based on JavaScript library [Chalk](https://github.com/chalk/chalk) for many of its concepts and some of its code. Kokuban means blackboard in Japanese.
+
+## Features
+- Expressive API
+- Auto detects color support
+- Auto enables escape sequence support on Windows 10 20H1 or later
+- 256 (8-bit) / TrueColor (24-bit) colors support
+
+## Install
+
+```
+dotnet package add Kokuban
+```
+
+## Usage
+
+```csharp
+using Kokuban;
+
+// Use `+` operator.
+Console.WriteLine(Chalk.Red + "Hello");
+Console.WriteLine(Chalk.Red + ("Hello " + (Chalk.Underline.BgBlue + "World")) + "!");
+
+// Use indexer.
+Console.WriteLine(Chalk.Red.Underline["Hello"]);
+
+// Use `ToStyledString` extension method.
+Console.WriteLine("Foo Bar Baz".ToStyledString(Chalk.White.Blue));
+
+// Use `Render` method.
+Console.WriteLine(Chalk.Rgb(255, 128, 128).Render("Hello Konnichiwa!"));
+```
 
 ## License
 

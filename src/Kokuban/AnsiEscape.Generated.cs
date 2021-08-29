@@ -76,51 +76,51 @@ namespace Kokuban
 
 namespace Kokuban.AnsiEscape
 {
-    public static partial class StringAnsiEscape
+    public static partial class AnsiEscapeCode
     {
-        public static string Black(string s) => ForegroundColor(s, KokubanColor.Black);
-        public static string Red(string s) => ForegroundColor(s, KokubanColor.Red);
-        public static string Green(string s) => ForegroundColor(s, KokubanColor.Green);
-        public static string Yellow(string s) => ForegroundColor(s, KokubanColor.Yellow);
-        public static string Blue(string s) => ForegroundColor(s, KokubanColor.Blue);
-        public static string Magenta(string s) => ForegroundColor(s, KokubanColor.Magenta);
-        public static string Cyan(string s) => ForegroundColor(s, KokubanColor.Cyan);
-        public static string White(string s) => ForegroundColor(s, KokubanColor.White);
-        public static string Gray(string s) => ForegroundColor(s, KokubanColor.Gray);
-        public static string Grey(string s) => ForegroundColor(s, KokubanColor.Grey);
-        public static string BrightBlack(string s) => ForegroundColor(s, KokubanColor.BrightBlack);
-        public static string BrightRed(string s) => ForegroundColor(s, KokubanColor.BrightRed);
-        public static string BrightGreen(string s) => ForegroundColor(s, KokubanColor.BrightGreen);
-        public static string BrightYellow(string s) => ForegroundColor(s, KokubanColor.BrightYellow);
-        public static string BrightBlue(string s) => ForegroundColor(s, KokubanColor.BrightBlue);
-        public static string BrightMagenta(string s) => ForegroundColor(s, KokubanColor.BrightMagenta);
-        public static string BrightCyan(string s) => ForegroundColor(s, KokubanColor.BrightCyan);
-        public static string BrightWhite(string s) => ForegroundColor(s, KokubanColor.BrightWhite);
-        public static string BgBlack(string s) => BackgroundColor(s, KokubanColor.Black);
-        public static string BgRed(string s) => BackgroundColor(s, KokubanColor.Red);
-        public static string BgGreen(string s) => BackgroundColor(s, KokubanColor.Green);
-        public static string BgYellow(string s) => BackgroundColor(s, KokubanColor.Yellow);
-        public static string BgBlue(string s) => BackgroundColor(s, KokubanColor.Blue);
-        public static string BgMagenta(string s) => BackgroundColor(s, KokubanColor.Magenta);
-        public static string BgCyan(string s) => BackgroundColor(s, KokubanColor.Cyan);
-        public static string BgWhite(string s) => BackgroundColor(s, KokubanColor.White);
-        public static string BgGray(string s) => BackgroundColor(s, KokubanColor.Gray);
-        public static string BgGrey(string s) => BackgroundColor(s, KokubanColor.Grey);
-        public static string BgBrightBlack(string s) => BackgroundColor(s, KokubanColor.BrightBlack);
-        public static string BgBrightRed(string s) => BackgroundColor(s, KokubanColor.BrightRed);
-        public static string BgBrightGreen(string s) => BackgroundColor(s, KokubanColor.BrightGreen);
-        public static string BgBrightYellow(string s) => BackgroundColor(s, KokubanColor.BrightYellow);
-        public static string BgBrightBlue(string s) => BackgroundColor(s, KokubanColor.BrightBlue);
-        public static string BgBrightMagenta(string s) => BackgroundColor(s, KokubanColor.BrightMagenta);
-        public static string BgBrightCyan(string s) => BackgroundColor(s, KokubanColor.BrightCyan);
-        public static string BgBrightWhite(string s) => BackgroundColor(s, KokubanColor.BrightWhite);
-        public static string Bold(string s) => Decorate(s, 1, 22);
-        public static string Faint(string s) => Decorate(s, 2, 22);
-        public static string Dim(string s) => Decorate(s, 2, 22);
-        public static string Italic(string s) => Decorate(s, 3, 23);
-        public static string Underline(string s) => Decorate(s, 4, 24);
-        public static string Inverse(string s) => Decorate(s, 7, 27);
-        public static string Overline(string s) => Decorate(s, 53, 55);
+        public static (int Begin, int End) Black { get; } = (30, 39);
+        public static (int Begin, int End) Red { get; } = (31, 39);
+        public static (int Begin, int End) Green { get; } = (32, 39);
+        public static (int Begin, int End) Yellow { get; } = (33, 39);
+        public static (int Begin, int End) Blue { get; } = (34, 39);
+        public static (int Begin, int End) Magenta { get; } = (35, 39);
+        public static (int Begin, int End) Cyan { get; } = (36, 39);
+        public static (int Begin, int End) White { get; } = (37, 39);
+        public static (int Begin, int End) Gray { get; } = (90, 39);
+        public static (int Begin, int End) Grey { get; } = (90, 39);
+        public static (int Begin, int End) BrightBlack { get; } = (90, 39);
+        public static (int Begin, int End) BrightRed { get; } = (91, 39);
+        public static (int Begin, int End) BrightGreen { get; } = (92, 39);
+        public static (int Begin, int End) BrightYellow { get; } = (93, 39);
+        public static (int Begin, int End) BrightBlue { get; } = (94, 39);
+        public static (int Begin, int End) BrightMagenta { get; } = (95, 39);
+        public static (int Begin, int End) BrightCyan { get; } = (96, 39);
+        public static (int Begin, int End) BrightWhite { get; } = (97, 39);
+        public static (int Begin, int End) BgBlack { get; } = (40, 49);
+        public static (int Begin, int End) BgRed { get; } = (41, 49);
+        public static (int Begin, int End) BgGreen { get; } = (42, 49);
+        public static (int Begin, int End) BgYellow { get; } = (43, 49);
+        public static (int Begin, int End) BgBlue { get; } = (44, 49);
+        public static (int Begin, int End) BgMagenta { get; } = (45, 49);
+        public static (int Begin, int End) BgCyan { get; } = (46, 49);
+        public static (int Begin, int End) BgWhite { get; } = (47, 49);
+        public static (int Begin, int End) BgGray { get; } = (100, 49);
+        public static (int Begin, int End) BgGrey { get; } = (100, 49);
+        public static (int Begin, int End) BgBrightBlack { get; } = (100, 49);
+        public static (int Begin, int End) BgBrightRed { get; } = (101, 49);
+        public static (int Begin, int End) BgBrightGreen { get; } = (102, 49);
+        public static (int Begin, int End) BgBrightYellow { get; } = (103, 49);
+        public static (int Begin, int End) BgBrightBlue { get; } = (104, 49);
+        public static (int Begin, int End) BgBrightMagenta { get; } = (105, 49);
+        public static (int Begin, int End) BgBrightCyan { get; } = (106, 49);
+        public static (int Begin, int End) BgBrightWhite { get; } = (107, 49);
+        public static (int Begin, int End) Bold { get; } = (1, 22);
+        public static (int Begin, int End) Faint { get; } = (2, 22);
+        public static (int Begin, int End) Dim { get; } = (2, 22);
+        public static (int Begin, int End) Italic { get; } = (3, 23);
+        public static (int Begin, int End) Underline { get; } = (4, 24);
+        public static (int Begin, int End) Inverse { get; } = (7, 27);
+        public static (int Begin, int End) Overline { get; } = (53, 55);
     }
 
     public partial struct AnsiStyleBuilder

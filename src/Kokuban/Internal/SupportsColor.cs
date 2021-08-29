@@ -15,8 +15,19 @@ namespace Kokuban.Internal
     {
         private static readonly string[] WellknownCIs = new[] { "TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE", "DRONE" };
 
-        public static KokubanColorMode Output { get; } = GetSupportedColorMode(!Console.IsOutputRedirected);
-        public static KokubanColorMode Error { get; } = GetSupportedColorMode(!Console.IsErrorRedirected);
+        public static KokubanColorMode Output { get; private set; }
+        public static KokubanColorMode Error { get; private set; }
+
+        static SupportsColor()
+        {
+            Refresh();
+        }
+
+        public static void Refresh()
+        {
+            Output = GetSupportedColorMode(!Console.IsOutputRedirected);
+            Error = GetSupportedColorMode(!Console.IsErrorRedirected);
+        }
 
         private static bool TryGetForceColorByEnvironmentVariable(out KokubanColorMode mode)
         {
