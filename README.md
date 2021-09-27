@@ -162,6 +162,7 @@ Kokuban supports ANSI 256-palette index (`Ansi256` method) and RGB format (`Rgb`
 ```
 MIT License
 
+Copyright (c) Cysharp, Inc.
 Copyright (c) Mayuki Sawatari <mayuki@misuzilla.org>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

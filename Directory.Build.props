@@ -7,10 +7,10 @@
 
     <!-- NuGet Package Information -->
     <Description>Simplifies styling strings in the terminal</Description>
-    <Authors>Mayuki Sawatari</Authors>
-    <Copyright>Copyright 2021-present Mayuki Sawatari</Copyright>
-    <PackageProjectUrl>https://github.com/mayuki/Kokuban</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mayuki/Kokuban</RepositoryUrl>
+    <Authors>Cysharp, Inc.</Authors>
+    <Copyright>Copyright 2021-present Cysharp, Inc.</Copyright>
+    <PackageProjectUrl>https://github.com/Cysharp/Kokuban</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Cysharp/Kokuban</RepositoryUrl>
     <!--<PackageIcon>icon.png</PackageIcon>-->
     <PackageTags>CommandLine CLI Console Color ANSI EscapeSequence</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
