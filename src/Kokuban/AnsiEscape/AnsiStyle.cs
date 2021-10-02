@@ -67,6 +67,10 @@ namespace Kokuban.AnsiEscape
             => Foreground(KokubanColorValue.FromBasic(color));
         public AnsiStyle Background(byte color)
             => Background(KokubanColorValue.FromBasic(color));
+        public AnsiStyle Foreground(byte r, byte g, byte b)
+            => Foreground(KokubanColorValue.FromRgb(r, g, b));
+        public AnsiStyle Background(byte r, byte g, byte b)
+            => Background(KokubanColorValue.FromRgb(r, g, b));
         public AnsiStyle Rgb(byte r, byte g, byte b)
             => Foreground(KokubanColorValue.FromRgb(r, g, b));
         public AnsiStyle BgRgb(byte r, byte g, byte b)

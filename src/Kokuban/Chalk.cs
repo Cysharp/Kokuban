@@ -8,7 +8,7 @@ namespace Kokuban
     public partial class Chalk
     {
         /// <summary>
-        /// Creates a new instance of Chalk with options.
+        /// Creates a new instance of AnsiStyle with options.
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
@@ -23,9 +23,13 @@ namespace Kokuban
             => new AnsiStyle().Foreground(color);
         public static AnsiStyle Background(byte color)
             => new AnsiStyle().Background(color);
+        public static AnsiStyle Foreground(byte r, byte g, byte b)
+            => new AnsiStyle().Foreground(r, g, b);
+        public static AnsiStyle Background(byte r, byte g, byte b)
+            => new AnsiStyle().Background(r, g, b);
         public static AnsiStyle Rgb(byte r, byte g, byte b)
-            => new AnsiStyle().Rgb(r, g, b);
+            => new AnsiStyle().Foreground(r, g, b);
         public static AnsiStyle BgRgb(byte r, byte g, byte b)
-            => new AnsiStyle().BgRgb(r, g, b);
+            => new AnsiStyle().Background(r, g, b);
     }
 }
