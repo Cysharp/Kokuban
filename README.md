@@ -84,11 +84,11 @@ Chalk.Red.Underline["Hello"] // => "Hello" (Red + Underlined)
 Console.WriteLine("Foo Bar Baz".ToStyledString(Chalk.White.Blue));
 ```
 
-### `Kokuban.Chalk` class
-You can customize the behavior by explicitly instancing the Chalk class and use it.
+### `Chalk.Create` method
+You can customize the behavior by explicitly instancing the AnsiStyle and use it.
 
 ```csharp
-var chalk = new Chalk(new KokubanOptions
+var chalk = Chalk.Create(new KokubanOptions
 {
     // The output will be forced to plain text, whether the terminal supports colors or not.
     Mode = KokubanColorMode.None,
