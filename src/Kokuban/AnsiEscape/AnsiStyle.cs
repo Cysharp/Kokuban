@@ -54,11 +54,11 @@ namespace Kokuban.AnsiEscape
             => new AnsiStyle(_options, _fgColor, _bgColor, flag | _flag);
         internal AnsiStyle WithKokubanOptions(KokubanOptions options)
             => new AnsiStyle(options, _fgColor, _bgColor, _flag);
-        internal AnsiStyle Foreground(KokubanColorValue color)
+        
+        public AnsiStyle Foreground(KokubanColorValue color)
             => new AnsiStyle(_options, color, _bgColor, _flag);
-        internal AnsiStyle Background(KokubanColorValue color)
+        public AnsiStyle Background(KokubanColorValue color)
             => new AnsiStyle(_options, _fgColor, color, _flag);
-
         public AnsiStyle Foreground(KokubanColor color)
             => Foreground(KokubanColorValue.FromBasic((byte)color));
         public AnsiStyle Background(KokubanColor color)

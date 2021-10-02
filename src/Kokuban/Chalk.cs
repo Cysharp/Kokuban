@@ -15,6 +15,10 @@ namespace Kokuban
         public static AnsiStyle Create(KokubanOptions options)
             => new AnsiStyle().WithKokubanOptions(options);
 
+        public static AnsiStyle Foreground(KokubanColorValue color)
+            => new AnsiStyle().Foreground(color);
+        public static AnsiStyle Background(KokubanColorValue color)
+            => new AnsiStyle().Background(color);
         public static AnsiStyle Foreground(KokubanColor color)
             => new AnsiStyle().Foreground(color);
         public static AnsiStyle Background(KokubanColor color)
