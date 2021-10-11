@@ -97,6 +97,18 @@ var chalk = Chalk.Create(new KokubanOptions
 Console.WriteLine(chalk.Red.Underline["Hello"]); // => "Hello" without escape sequences.
 ```
 
+### `KokubanColorValue` struct
+`KokubanColorValue` struct represents a color of AnsiStyle.
+
+```csharp
+var byColor = KokubanColorValue.FromColor(KokubanColor.Blue);
+var byCode = KokubanColorValue.FromBasic(31); // 4-bit
+var byIndex = KokubanColorValue.FromIndex(196); // 8-bit (Index)
+var byRgb = KokubanColorValue.FromRgb(128, 0, 0); // 24-bit
+
+Console.WriteLine(Chalk.Foreground(byColor) + "Foo Bar");
+```
+
 ## Styles
 - Decorations
     - Bold

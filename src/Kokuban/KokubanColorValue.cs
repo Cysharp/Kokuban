@@ -1,34 +1,45 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Kokuban.Internal
+namespace Kokuban
 {
-    internal enum KokubanColorValueType : byte
-    {
+    public enum KokubanColorValueType : byte
+    {  
+        /// <summary>
+        /// 4-bit colors
+        /// </summary>
         Code,
+        /// <summary>
+        /// 8-bit indexed colors
+        /// </summary>
         Indexed,
+        /// <summary>
+        /// 24-bit full colors
+        /// </summary>
         Rgb
     }
 
-    [StructLayout(LayoutKind.Explicit)]
-    internal readonly struct KokubanColorValue : IEquatable<KokubanColorValue>
+    /// <summary>
+    /// Represents a text color of <see cref="AnsiEscape.AnsiStyle"/>.
+    /// </summary>
+    public readonly struct KokubanColorValue : IEquatable<KokubanColorValue>
     {
-        [FieldOffset(0)] public readonly KokubanColorValueType Type;
+        public KokubanColorValueType Type { get; }
 
-        [FieldOffset(1)] public readonly byte Index;
+        public byte Index { get; }
 
-        [FieldOffset(1)] public readonly byte R;
-        [FieldOffset(2)] public readonly byte G;
-        [FieldOffset(3)] public readonly byte B;
+        public byte R { get; }
+        public byte G { get; }
+        public byte B { get; }
 
-        public KokubanColorValue(KokubanColorValueType type, byte index)
+        private KokubanColorValue(KokubanColorValueType type, byte index)
         {
             Type = type;
             R = G = B = 0;
             Index = index;
         }
 
-        public KokubanColorValue(KokubanColorValueType type, byte r, byte g, byte b)
+        private KokubanColorValue(KokubanColorValueType type, byte r, byte g, byte b)
         {
             Type = type;
             Index = 0;
@@ -39,6 +50,8 @@ namespace Kokuban.Internal
 
         public static KokubanColorValue FromBasic(byte index)
             => new KokubanColorValue(KokubanColorValueType.Code, index);
+        public static KokubanColorValue FromColor(KokubanColor color)
+            => new KokubanColorValue(KokubanColorValueType.Code, (byte)color);
         public static KokubanColorValue FromIndex(byte index)
             => new KokubanColorValue(KokubanColorValueType.Indexed, index);
         public static KokubanColorValue FromRgb(byte r, byte g, byte b)
@@ -48,7 +61,7 @@ namespace Kokuban.Internal
         // The original source code is licensed under the MIT License.
         // Copyright © 2011-2016, Heather Arthur. Copyright © 2016-2021, Josh Junon.
         // https://github.com/Qix-/color-convert/blob/3f0e0d4e92e235796ccb17f6e85c72094a651f49/conversions.js
-        public static byte FromRgbToAnsi256(KokubanColorValue color)
+        internal static byte FromRgbToAnsi256(KokubanColorValue color)
         {
             if (color.Type != KokubanColorValueType.Rgb) throw new ArgumentException($"ColorValueType should be Rgb. (Mode={color.Type})", nameof(color));
 
@@ -84,7 +97,7 @@ namespace Kokuban.Internal
         // The original source code is licensed under the MIT License.
         // Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
         // https://github.com/chalk/ansi-styles/blob/cd0b0cb59337bfd7d3669b2d0fcde7ff661a83a6/index.js#L157
-        public static byte FromAnsi256ToAnsi(KokubanColorValue color)
+        internal static byte FromAnsi256ToAnsi(KokubanColorValue color)
         {
             if (color.Type != KokubanColorValueType.Indexed) throw new ArgumentException($"ColorValueType should be Indexed. (Mode={color.Type})", nameof(color));
 
