@@ -13,9 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
-        with:
-          dotnet-version: "5.0.x"
-
       - name: "Set VersionSuffix for Preview"
         if: "contains(github.ref, 'refs/tags') && contains(github.ref, 'preview')"
         run: |
@@ -23,21 +20,17 @@ jobs:
       - name: "Get git tag"
         if: "contains(github.ref, 'refs/tags')"
         run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-
       # Build
       - run: dotnet restore
       - run: dotnet build -c Release
-
       # Packaging
       - name: dotnet pack
         run: dotnet pack -c Release --no-build --version-suffix "$(versionSuffix)" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output $GITHUB_WORKSPACE/artifacts
-
       # Upload & Publish
       - uses: actions/upload-artifact@master
         with:
           name: Packages
           path: artifacts
-
       - name: "Push to NuGet.org"
         run: |
           dotnet nuget push "$GITHUB_WORKSPACE/artifacts/*.nupkg" --skip-duplicate -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
