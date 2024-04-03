@@ -1,36 +1,51 @@
-name: Build-Release
+name: Build Release
 
 on:
-  push:
-    tags:
-      - v*
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "tag: git tag you want create. (sample 1.0.0)"
+        required: true
+      dry-run:
+        description: "dry-run: true will never create release/nuget."
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-  Release:
-    if: "contains(github.ref, 'refs/tags')"
+  update-packagejson:
+    uses: Cysharp/Actions/.github/workflows/update-packagejson.yaml@main
+    with:
+      file-path: |
+        ./Directory.Build.props
+      tag: ${{ inputs.tag }}
+      dry-run: ${{ inputs.dry-run }}
+      push-tag: false
+
+  build-dotnet:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
-      - name: "Set VersionSuffix for Preview"
-        if: "contains(github.ref, 'refs/tags') && contains(github.ref, 'preview')"
-        run: |
-          echo "VERSION_SUFFIX=preview.`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}" >> $GITHUB_ENV
-      - name: "Get git tag"
-        if: "contains(github.ref, 'refs/tags')"
-        run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-      # Build
-      - run: dotnet restore
-      - run: dotnet build -c Release
-      # Packaging
-      - name: dotnet pack
-        run: dotnet pack -c Release --no-build --version-suffix "$(versionSuffix)" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output $GITHUB_WORKSPACE/artifacts
-      # Upload & Publish
-      - uses: actions/upload-artifact@master
+      # pack nuget
+      - run: dotnet build -c Release -p:Version=${{ inputs.tag }}
+      - run: dotnet test -c Release --no-build -p:Version=${{ inputs.tag }}
+      - run: dotnet pack  -c Release --no-build -p:Version=${{ inputs.tag }} --include-symbols --include-source -o ./publish
+      - uses: actions/upload-artifact@v2
         with:
-          name: Packages
-          path: artifacts
-      - name: "Push to NuGet.org"
-        run: |
-          dotnet nuget push "$GITHUB_WORKSPACE/artifacts/*.nupkg" --skip-duplicate -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+          name: nuget
+          path: ./publish
+
+  # release
+  create-release:
+    needs: [update-packagejson, build-dotnet]
+    uses: Cysharp/Actions/.github/workflows/create-release.yaml@main
+    with:
+      commit-id:  ${{ needs.update-packagejson.outputs.sha }}
+      dry-run: ${{ inputs.dry-run }}
+      tag: ${{ inputs.tag }}
+      nuget-push: true
+      unitypackage-upload: false
+      release-format: 'v{0}'
+    secrets: inherit

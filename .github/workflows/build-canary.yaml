@@ -1,0 +1,25 @@
+name: Build Canary
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-dotnet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
+      - name: "Set VersionSuffix for Preview"
+        id: version-suffix
+        run: echo "version=preview.`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}" | tee -a $GITHUB_OUTPUT
+      - run: dotnet build -c Release
+      # .csproj included version will be used.
+      - run: dotnet pack  -c Release --no-build --version-suffix "${{ steps.version-suffix.outputs.verseion }}" --include-symbols --include-source -o ./publish
+      # Upload & Publish
+      - uses: actions/upload-artifact@master
+        with:
+          name: nuget
+          path: publish
+      - name: "Push to NuGet.org"
+        run: dotnet nuget push "$GITHUB_WORKSPACE/publish/*.nupkg" --skip-duplicate -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
