@@ -8,6 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Load secrets
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN_PUBLIC }}
+          NUGET_KEY: "op://GitHubActionsPublic/NUGET_KEY/username"
+
       - uses: actions/checkout@v4
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
       - name: "Set VersionSuffix for Preview"
@@ -22,4 +31,4 @@ jobs:
           name: nuget
           path: publish
       - name: "Push to NuGet.org"
-        run: dotnet nuget push "$GITHUB_WORKSPACE/publish/*.nupkg" --skip-duplicate -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push "$GITHUB_WORKSPACE/publish/*.nupkg" --skip-duplicate -k ${{ steps.op-load-secret.outputs.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
