@@ -17,7 +17,7 @@ jobs:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN_PUBLIC }}
           NUGET_KEY: "op://GitHubActionsPublic/NUGET_KEY/username"
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
       - name: "Set VersionSuffix for Preview"
         id: version-suffix
