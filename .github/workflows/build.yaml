@@ -22,9 +22,10 @@ jobs:
       - run: dotnet test -c Release --no-build --logger trx --results-directory $GITHUB_WORKSPACE/artifacts
       # Packaging
       - name: dotnet pack
-        run: dotnet pack -c Release --no-build --version-suffix "$(versionSuffix)" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output $GITHUB_WORKSPACE/artifacts
+        run: dotnet pack -c Release --no-build --version-suffix "$(versionSuffix)" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -o $GITHUB_WORKSPACE/artifacts
       # Upload & Publish
-      - uses: actions/upload-artifact@master
+      - uses: Cysharp/Actions/.github/actions/upload-artifact@main
         with:
           name: Packages
-          path: artifacts
+          path: ./artifacts
+          retention-days: 1

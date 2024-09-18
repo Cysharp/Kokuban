@@ -26,9 +26,10 @@ jobs:
       # .csproj included version will be used.
       - run: dotnet pack  -c Release --no-build --version-suffix "${{ steps.version-suffix.outputs.verseion }}" --include-symbols --include-source -o ./publish
       # Upload & Publish
-      - uses: actions/upload-artifact@master
+      - uses: Cysharp/Actions/.github/actions/upload-artifact@main
         with:
           name: nuget
-          path: publish
+          path: ./publish
+          retention-days: 14
       - name: "Push to NuGet.org"
         run: dotnet nuget push "$GITHUB_WORKSPACE/publish/*.nupkg" --skip-duplicate -k ${{ steps.op-load-secret.outputs.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
