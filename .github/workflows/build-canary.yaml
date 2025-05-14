@@ -23,7 +23,7 @@ jobs:
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
       - name: "Set VersionSuffix for Preview"
         id: version-suffix
-        run: echo "version=preview.`date '+%Y%m%d-%H%M%S'`+${GITHUB_SHA:0:6}" | tee -a $GITHUB_OUTPUT
+        run: echo "version=preview.$(date '+%Y%m%d-%H%M%S')+${GITHUB_SHA:0:6}" | tee -a $GITHUB_OUTPUT
       - run: dotnet build -c Release
       # .csproj included version will be used.
       - run: dotnet pack  -c Release --no-build --version-suffix "${{ steps.version-suffix.outputs.verseion }}" --include-symbols --include-source -o ./publish
