@@ -10,10 +10,15 @@
     <Authors>Cysharp, Inc.</Authors>
     <Copyright>Copyright 2021-present Cysharp, Inc.</Copyright>
     <PackageProjectUrl>https://github.com/Cysharp/Kokuban</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Cysharp/Kokuban</RepositoryUrl>
     <!--<PackageIcon>icon.png</PackageIcon>-->
     <PackageTags>CommandLine CLI Console Color ANSI EscapeSequence</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>
