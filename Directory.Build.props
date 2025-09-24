@@ -4,6 +4,8 @@
     <VersionPrefix>0.2.0</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)StrongNameKey.snk</AssemblyOriginatorKeyFile>
 
     <!-- NuGet Package Information -->
     <IsPackable>false</IsPackable>
