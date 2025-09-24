@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
 
     <!-- NuGet Package Information -->
+    <IsPackable>false</IsPackable>
     <Description>Simplifies styling strings in the terminal</Description>
     <Authors>Cysharp, Inc.</Authors>
     <Copyright>Copyright 2021-present Cysharp, Inc.</Copyright>
@@ -19,6 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Icon.png" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)LICENSE" />
   </ItemGroup>
 </Project>
