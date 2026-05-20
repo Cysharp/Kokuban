@@ -25,6 +25,7 @@ jobs:
       dry-run: ${{ inputs.dry-run }}
 
   build-dotnet:
+    needs: [update-packagejson]
     permissions:
       contents: read
       id-token: write # required for NuGet Trusted Publish
@@ -32,6 +33,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: Cysharp/Actions/.github/actions/checkout@main
+        with:
+          ref: ${{ needs.update-packagejson.outputs.sha }}
       - uses: Cysharp/Actions/.github/actions/setup-dotnet@main
       # pack nuget
       - run: dotnet build -c Release -p:Version=${{ inputs.tag }}
